@@ -1,0 +1,1589 @@
+/* 🎯 TASK MANAGER - COMPLETE STYLING SYSTEM */
+
+// 🎨 CSS VARIABLES & THEME SYSTEM
+/* 
+   ✨ CSS CUSTOM PROPERTIES (CSS Variables) - Hệ thống biến CSS toàn cục
+   - :root selector định nghĩa biến cho toàn bộ document
+   - Biến CSS có thể được override ở các selector con
+   - Syntax: --variable-name: value;
+   - Sử dụng: var(--variable-name)
+   - Ưu điểm: Dynamic theming, maintainability, consistency
+*/
+:root {
+  // 🌈 ENHANCED COLOR PALETTE
+  /* 
+     🎨 COLOR SYSTEM - Hệ thống màu sắc nhất quán
+     - Primary colors: Màu chính của brand/ứng dụng
+     - Semantic colors: Success, Warning, Error có ý nghĩa cụ thể
+     - Sử dụng hex colors (#) cho độ chính xác cao
+     - Naming convention: --color-[purpose]-[variant]
+  */
+  --color-primary: #3b82f6;          // Màu xanh chính (Blue 500) - Button, links, highlights
+  --color-primary-hover: #2563eb;    // Màu hover đậm hơn (Blue 600) - Khi hover/active
+  --color-primary-light: #93c5fd;    // Màu nhạt (Blue 300) - Backgrounds, borders
+  --color-accent: #8b5cf6;           // Màu tím accent (Purple 500) - Secondary highlights
+  --color-secondary: #6b7280;        // Màu xám cân bằng (Gray 500) - Secondary text/elements
+  --color-success: #22c55e;          // Màu xanh lá thành công (Green 500) - Success states
+  --color-warning: #f59e0b;          // Màu vàng cảnh báo (Amber 500) - Warning states
+  --color-error: #ef4444;            // Màu đỏ lỗi (Red 500) - Error states, destructive actions
+  --color-info: #06b6d4;             // Màu xanh thông tin (Cyan 500) - Informational content
+  
+  // 🌈 BEAUTIFUL GRADIENTS
+  /* 
+     🌈 GRADIENT SYSTEM - Hệ thống gradient đẹp mắt
+     - linear-gradient(direction, color-stop1, color-stop2, ...)
+     - 135deg: Góc chéo từ bottom-left đến top-right
+     - 145deg: Góc chéo nhẹ hơn, tạo hiệu ứng depth
+     - Gradient tạo depth và visual interest
+  */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);     // Primary gradient: Blue → Purple
+  --gradient-success: linear-gradient(135deg, #22c55e 0%, #10b981 100%);     // Success gradient: Light Green → Dark Green  
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);        // Card gradient: White → Very light gray
+  --gradient-hover: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);       // Hover gradient: Light gray variations
+  
+  // 📱 ENHANCED BACKGROUND COLORS
+  /* 
+     📱 BACKGROUND COLOR SYSTEM - Hệ thống màu nền phân cấp
+     - Primary: Nền chính của app (thường là trắng trong light theme)
+     - Secondary: Nền cho cards, panels, sidebar
+     - Tertiary: Nền cho elements nhỏ hơn, dividers
+     - Hover: Nền khi hover, tạo feedback cho user
+     - Semantic backgrounds: Accent, Success có ý nghĩa cụ thể
+  */
+  --bg-primary: #ffffff;             // Nền chính trắng - Main app background
+  --bg-secondary: #f1f5f9;           // Nền phụ xám nhẹ (Slate 100) - Cards, panels
+  --bg-tertiary: #e2e8f0;            // Nền cấp 3 (Slate 200) - Dividers, borders
+  --bg-hover: #e0e7ff;               // Nền hover xanh nhẹ (Blue 100) - Interactive feedback
+  --bg-accent: #fef3f2;              // Nền accent đỏ nhẹ (Red 50) - Special highlights
+  --bg-success: #f0fdf4;             // Nền thành công xanh lá nhẹ (Green 50) - Success states
+  
+  // 📝 ENHANCED TEXT COLORS  
+  /* 
+     📝 TEXT COLOR HIERARCHY - Hệ thống màu text phân cấp
+     - Primary: Text chính, tiêu đề, nội dung quan trọng
+     - Secondary: Text phụ, mô tả, labels
+     - Muted: Text ít quan trọng, timestamps, placeholders
+     - Inverse: Text trên background tối (trong buttons, headers)
+     - Accent: Text có màu brand (links, highlights)
+     - Contrast ratios tuân thủ WCAG AA (4.5:1 minimum)
+  */
+  --text-primary: #111827;           // Text chính đen đậm (Gray 900) - Headings, main content
+  --text-secondary: #6b7280;         // Text phụ xám (Gray 500) - Descriptions, labels
+  --text-muted: #9ca3af;             // Text mờ (Gray 400) - Timestamps, less important info
+  --text-inverse: #ffffff;           // Text nghịch đảo trắng - On dark backgrounds
+  --text-accent: #3b82f6;            // Text accent xanh - Links, interactive elements
+  
+  // 🔲 ENHANCED BORDERS & SHADOWS
+  /* 
+     🔲 BORDER & SHADOW SYSTEM - Hệ thống viền và đổ bóng
+     - Border colors: Màu viền cho các trạng thái khác nhau
+     - Shadow system: Tạo depth và hierarchy
+     - Shadow syntax: offset-x offset-y blur-radius spread-radius color
+     - Multiple shadows: Kết hợp nhiều shadow tạo hiệu ứng phức tạp
+     - rgb(0 0 0 / 0.1): Modern CSS opacity syntax thay vì rgba()
+  */
+  --border-color: #d1d5db;           // Viền xám nhẹ (Gray 300) - Default borders
+  --border-hover: #9ca3af;           // Viền hover đậm hơn (Gray 400) - Interactive feedback
+  --border-focus: #3b82f6;           // Viền focus xanh - Focus states, accessibility
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);                                    // Small shadow - Subtle elements
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); // Medium shadow - Cards, buttons
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); // Large shadow - Modals, dropdowns
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); // Extra large - Major elements
+  --shadow-card: 0 2px 8px -2px rgb(0 0 0 / 0.1), 0 4px 12px -4px rgb(0 0 0 / 0.1); // Card-specific shadow
+  --shadow-hover: 0 8px 25px -8px rgb(59 130 246 / 0.3), 0 4px 12px -4px rgb(0 0 0 / 0.1); // Hover shadow with blue tint
+  
+  // 📏 SPACING SYSTEM
+  /* 
+     📏 SPACING SCALE - Hệ thống khoảng cách nhất quán
+     - Base unit: 4px (0.25rem) - Tạo rhythm và alignment
+     - Scale: xs(4px) → sm(8px) → md(16px) → lg(24px) → xl(32px) → 2xl(48px)
+     - Sử dụng rem units: Scalable với font-size, accessibility friendly
+     - 8px grid system: Tất cả spacing đều chia hết cho 8 (design system standard)
+     - Consistent spacing tạo visual harmony và professional appearance
+  */
+  --space-xs: 0.25rem;   // 4px - Tiny gaps, icon padding
+  --space-sm: 0.5rem;    // 8px - Small gaps, button padding
+  --space-md: 1rem;      // 16px - Standard gap, card padding
+  --space-lg: 1.5rem;    // 24px - Large gaps, section spacing
+  --space-xl: 2rem;      // 32px - Extra large gaps, component spacing
+  --space-2xl: 3rem;     // 48px - Major section spacing
+  
+  // 📐 BORDER RADIUS
+  /* 
+     📐 BORDER RADIUS SYSTEM - Hệ thống bo góc nhất quán
+     - Small radius: Subtle rounding cho small elements
+     - Medium radius: Standard rounding cho cards, buttons
+     - Large radius: More pronounced rounding cho major elements  
+     - Full radius: Perfect circles/pills (9999px ensures full rounding)
+     - Consistent rounding tạo cohesive design language
+  */
+  --radius-sm: 0.25rem;  // 4px - Small elements, inputs
+  --radius-md: 0.375rem; // 6px - Standard elements, cards
+  --radius-lg: 0.5rem;   // 8px - Large elements, containers
+  --radius-full: 9999px; // Full rounding - Pills, circles, toggle buttons
+  
+  // 🎭 ENHANCED ANIMATIONS
+  /* 
+     🎭 ANIMATION & TRANSITION SYSTEM - Hệ thống chuyển động mượt mà
+     - cubic-bezier(0.4, 0, 0.2, 1): "ease-out" curve - Nhanh ở đầu, chậm ở cuối
+     - Fast (150ms): Micro-interactions, hover effects
+     - Normal (300ms): Standard transitions, state changes
+     - Slow (500ms): Complex animations, page transitions
+     - Bounce: Playful effect với overshoot, dùng cho special interactions
+     - Consistent timing tạo smooth user experience
+  */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);    // 150ms - Quick hover effects
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);   // 300ms - Standard interactions
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);     // 500ms - Complex animations
+  --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); // Bounce effect - Playful interactions
+  
+  // 🔤 TYPOGRAPHY
+  /* 
+     🔤 TYPOGRAPHY SYSTEM - Hệ thống font chữ
+     - System font stack: Sử dụng font native của từng OS
+     - -apple-system: San Francisco font trên macOS/iOS
+     - BlinkMacSystemFont: Backup cho macOS
+     - Segoe UI: Windows system font
+     - Roboto: Android system font
+     - sans-serif: Generic fallback
+     - Ưu điểm: Fast loading, familiar UX, no web font requests
+  */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; // System font stack
+}
+/* 
+   ✅ END OF CSS VARIABLES SECTION
+   - Tất cả biến đã được định nghĩa trong :root scope
+   - Có thể override trong các theme-specific selectors
+   - Sử dụng var(--variable-name) để access values
+*/
+
+// 🌙 DARK THEME OVERRIDES
+/* 
+   🌙 DARK THEME VARIABLES - Override cho dark theme
+   - [data-theme="dark"]: Attribute selector cho dark theme
+   - Override các CSS variables đã define ở :root
+   - Màu background: Dark slate colors (900-500 range)
+   - Màu text: Light colors cho contrast tốt
+   - Shadow: Đậm hơn (higher opacity) vì background tối
+   - Border: Sáng hơn để visible trên dark background
+*/
+[data-theme="dark"] {
+  --bg-primary: #0f172a;    // Slate 900 - Darkest background
+  --bg-secondary: #1e293b;  // Slate 800 - Cards, panels  
+  --bg-tertiary: #334155;   // Slate 700 - Secondary elements
+  --bg-hover: #475569;      // Slate 600 - Hover states
+  
+  --text-primary: #f8fafc;  // Slate 50 - Main text (high contrast)
+  --text-secondary: #cbd5e1; // Slate 300 - Secondary text
+  --text-muted: #94a3b8;    // Slate 400 - Muted text
+  --text-inverse: #1e293b;  // Dark text on light backgrounds
+  
+  --border-color: #475569;  // Slate 600 - Visible borders on dark
+  --border-hover: #64748b;  // Slate 500 - Hover borders
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);   // Stronger shadows for dark theme
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4); // Higher opacity needed
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5); // Dark backgrounds need stronger shadows
+}
+
+// 🌐 GLOBAL STYLES - Reset CSS và thiết lập cơ bản
+/* 
+   🌐 UNIVERSAL RESET - CSS Reset cho tất cả elements
+   - * selector: Apply cho tất cả elements
+   - box-sizing: border-box: Padding và border tính vào width/height
+   - margin: 0; padding: 0: Reset browser default spacing
+   - Tạo foundation nhất quán cho tất cả browsers
+*/
+* {
+  box-sizing: border-box;    // Border-box model: width = content + padding + border
+  margin: 0;                 // Remove browser default margins
+  padding: 0;                // Remove browser default padding
+}
+/* 
+   📝 GIẢI THÍCH BOX-SIZING:
+   - content-box (default): width chỉ tính content, padding/border thêm vào
+   - border-box: width bao gồm content + padding + border
+   - border-box giúp control kích thước element dễ dàng hơn
+*/
+
+// 🎬 KEYFRAME ANIMATIONS
+/* 
+   🎬 KEYFRAME ANIMATIONS - Định nghĩa animations tùy chỉnh
+   - @keyframes: Định nghĩa animation sequence
+   - from/to: Start và end states (tương đương 0%/100%)
+   - transform: translateY(): Di chuyển theo trục Y
+   - opacity: Độ trong suốt (0 = invisible, 1 = opaque)
+*/
+@keyframes fadeInUp {
+  /* 
+     ✨ FADE IN UP ANIMATION
+     - Element starts 20px below và invisible
+     - Animate lên vị trí gốc và visible
+     - Tạo effect "slide up and fade in"
+     - Thường dùng cho page loads, component mounts
+  */
+  from {
+    opacity: 0;                // Start invisible
+    transform: translateY(20px); // Start 20px below
+  }
+  to {
+    opacity: 1;                // End fully visible
+    transform: translateY(0);   // End at normal position
+  }
+}
+
+@keyframes slideInRight {
+  /* 
+     ➡️ SLIDE IN RIGHT ANIMATION
+     - Element starts 20px to the left và invisible
+     - Slides to normal position và fades in
+     - Effect "slide from left to right"
+     - Good for sidebar items, navigation elements
+  */
+  from {
+    opacity: 0;                 // Start invisible
+    transform: translateX(-20px); // Start 20px to the left
+  }
+  to {
+    opacity: 1;                 // End fully visible
+    transform: translateX(0);    // End at normal position
+  }
+}
+
+@keyframes pulse {
+  /* 
+     💓 PULSE ANIMATION
+     - 0%: Normal size (scale 1)
+     - 50%: Slightly larger (scale 1.05)
+     - 100%: Back to normal size
+     - Creates breathing/pulsing effect
+     - Good for attention-grabbing elements, loading states
+  */
+  0%, 100% {
+    transform: scale(1);      // Normal size at start and end
+  }
+  50% {
+    transform: scale(1.05);   // 5% larger at midpoint
+  }
+}
+
+@keyframes shimmer {
+  /* 
+     ✨ SHIMMER ANIMATION - Loading skeleton effect
+     - Moves background gradient from left to right
+     - -200px: Start position (off-screen left)
+     - calc(200px + 100%): End position (off-screen right)
+     - Creates "loading shimmer" effect like Facebook/Instagram
+     - Used with linear gradient backgrounds
+  */
+  0% {
+    background-position: -200px 0;           // Start position (left edge)
+  }
+  100% {
+    background-position: calc(200px + 100%) 0; // End position (right edge + width)
+  }
+}
+
+body {
+  /* 
+     🎯 BODY ELEMENT - Global styles cho toàn bộ page
+     - font-family: Sử dụng system font stack từ CSS variables
+     - background-color: Màu nền chính từ theme system
+     - color: Màu text chính từ theme system
+     - transition: Smooth transition khi switch themes
+     - line-height: 1.6 = optimal readability (1.4-1.6 range)
+     - animation: Page load animation với fadeInUp effect
+  */
+  font-family: var(--font-family);      // System font stack
+  background-color: var(--bg-primary);  // Theme-aware background
+  color: var(--text-primary);           // Theme-aware text color
+  transition: var(--transition-normal); // Smooth theme transitions
+  line-height: 1.6;                     // Optimal reading line height
+  animation: fadeInUp 0.6s ease-out;    // Page load animation
+}
+/* 
+   📚 LINE-HEIGHT EXPLANATION:
+   - 1.0 = Text height only (too cramped)
+   - 1.6 = 60% extra space (optimal for reading)
+   - 2.0 = Double spacing (too loose)
+   - Unitless values scale với font-size
+*/
+
+// 🌙 DARK THEME OVERRIDES
+/* 
+   🌙 DARK THEME IMPLEMENTATION - body.theme-dark selector
+   - body.theme-dark: Class-based theme switching
+   - Override CSS variables từ :root scope
+   - Dark theme colors: Inverted contrast ratios
+   - Background: Dark colors (Slate 800-600)
+   - Text: Light colors (White to Light Gray)
+   - Maintains accessibility contrast ratios
+*/
+body.theme-dark {
+  /* 
+     🎨 DARK THEME COLOR OVERRIDES
+     - Primary: Slate 800 (very dark but not black)
+     - Secondary: Slate 700 (cards, panels)
+     - Tertiary: Slate 600 (borders, dividers)
+     - Hover: Slate 500 (lighter for interaction feedback)
+  */
+  --bg-primary: #1e293b;        // Slate 800 - Main dark background
+  --bg-secondary: #334155;      // Slate 700 - Card backgrounds
+  --bg-tertiary: #475569;       // Slate 600 - Secondary elements
+  --bg-hover: #64748b;          // Slate 500 - Hover states
+  
+  /* 
+     📝 DARK THEME TEXT COLORS
+     - High contrast white text for readability
+     - Graduated opacity for text hierarchy
+     - Inverse text for light backgrounds (buttons)
+  */
+  --text-primary: #ffffff;      // Pure white - Main text, headings
+  --text-secondary: #f1f5f9;    // Slate 100 - Secondary text
+  --text-muted: #e2e8f0;        // Slate 200 - Muted text, timestamps
+  --text-inverse: #1e293b;      // Dark text for light button backgrounds
+  
+  /* 
+     🔲 DARK THEME BORDERS & SHADOWS
+     - Borders: Lighter colors để visible trên dark background
+     - Shadows: Higher opacity vì dark theme needs stronger shadows
+     - Black shadows still work but need more opacity
+  */
+  --border-color: #475569;      // Slate 600 - Visible on dark backgrounds
+  --border-hover: #64748b;      // Slate 500 - Hover border feedback
+  
+  /* 
+     ✨ DARK THEME SHADOW SYSTEM
+     - Increased opacity (0.3-0.6) thay vì (0.1-0.2)
+     - Dark backgrounds need stronger shadows for depth
+     - Multiple shadow layers for complex depth effects
+  */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);                                      // Small shadow - 30% opacity
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -1px rgb(0 0 0 / 0.3);  // Medium - Layered shadows
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -2px rgb(0 0 0 / 0.4); // Large - Strong depth
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 10px 10px -5px rgb(0 0 0 / 0.3); // Extra large
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -1px rgb(0 0 0 / 0.3);   // Card-specific
+  --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -2px rgb(0 0 0 / 0.4); // Hover effect
+  
+  /* 
+     🌈 DARK THEME GRADIENTS
+     - Reversed gradient: Light to dark (opposite of light theme)
+     - Slate 700 to Slate 800 creates subtle depth
+  */
+  --gradient-card: linear-gradient(145deg, #334155 0%, #1e293b 100%);  // Slate 700 → Slate 800
+  
+  /* 
+     � DARK THEME BODY TEXT COLOR
+     - Override body text color to white
+     - Ensures base text color is correct for dark theme
+  */
+  color: #ffffff;               // Body text color override
+  
+  /* 
+     🎨 DARK THEME ELEMENT-SPECIFIC OVERRIDES
+     - Target specific elements that need white text
+     - Không dùng !important để avoid specificity conflicts
+     - Selective targeting cho clean CSS architecture
+  */
+  .task-text,                   // Task content text
+  .filter-btn,                  // Filter button text
+  .theme-toggle,                // Theme toggle button text
+  h1, h2, h3, h4, h5, h6,       // All heading elements
+  p, span, div:not(.task-item), label { // Text elements (exclude task-item for specific handling)
+    color: #ffffff;             // Force white text for dark theme
+  }
+  
+  // Task items specifically
+  .task-item {
+    .task-text {
+      color: #ffffff;
+    }
+    
+    .task-date {
+      color: #e2e8f0;
+    }
+  }
+  
+  // Input fields specific styling for dark theme
+  input[type="text"], 
+  input[type="search"],
+  textarea {
+    color: #ffffff;
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    
+    &::placeholder {
+      color: #cbd5e1;
+    }
+  }
+  
+  // Theme toggle for dark theme
+  .theme-toggle {
+    color: #ffffff;
+    background: rgba(51, 65, 85, 0.9);
+    border-color: rgba(148, 163, 184, 0.3);
+  }
+}
+
+// ☀️ LIGHT THEME EXPLICIT (ensure variables are set)
+body.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --bg-hover: #f1f5f9;
+  
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --text-inverse: #ffffff;
+  
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+  --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+  
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  
+  // ☀️ LIGHT THEME TEXT STYLING - Chỉ áp dụng cho light theme  
+  color: #111827;
+  
+  // Override specific elements for light theme
+  .task-text,
+  .filter-btn, 
+  h1, h2, h3, h4, h5, h6,
+  p, span, div:not(.add-task-btn):not(.theme-toggle), label {
+    color: #111827;
+  }
+  
+  // Task items specifically for light theme
+  .task-item {
+    .task-text {
+      color: #111827;
+    }
+    
+    .task-date {
+      color: #6b7280;
+    }
+  }
+  
+  // Input fields for light theme
+  input[type="text"], 
+  input[type="search"],
+  textarea {
+    color: #111827;
+    background-color: var(--bg-primary);
+    
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+  
+  // Theme toggle for light theme
+  .theme-toggle {
+    color: #111827;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// �🏗️ MODERN APP LAYOUT - Container chính với hiệu ứng đẹp
+.task-app {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  transition: var(--transition-normal);
+  position: relative;
+  
+}
+
+// 🌙 DARK THEME APP BACKGROUND
+body.theme-dark .task-app {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// ☀️ LIGHT THEME APP BACKGROUND  
+body.theme-light .task-app {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// 📋 MODERN HEADER SECTION - Thanh header với gradient đẹp
+.app-header {
+  background: var(--gradient-primary);
+  padding: var(--space-xl) var(--space-xl);
+  border-bottom: none;
+  margin-bottom: var(--space-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  
+  // Decorative elements
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-inverse);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+  }
+}
+
+// 📱 MAIN CONTENT LAYOUT
+.app-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-xl);
+  flex: 1;
+  padding: 0 var(--space-xl);
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding: 0 var(--space-md);
+  }
+}
+
+.main-area {
+  min-height: 0;
+}
+
+.sidebar-area {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  height: fit-content;
+  
+  @media (max-width: 1024px) {
+    order: 2;
+  }
+}
+
+// 🎨 ENHANCED THEME TOGGLE BUTTON
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full);
+  color: #111827;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  pointer-events: auto;
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background: rgba(59, 130, 246, 0.9);
+    color: var(--text-inverse);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  .theme-icon {
+    font-size: 1.2rem;
+    transition: transform var(--transition-normal);
+  }
+  
+  .theme-text {
+    font-weight: 600;
+  }
+  
+  .current-theme {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+}
+
+// 📝 TASK INPUT STYLES
+.task-input {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  
+  .input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+    
+    h3 {
+      color: var(--text-primary);
+      font-size: 1.25rem;
+    }
+    
+    .char-counter {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      
+      &.warning {
+        color: var(--color-warning);
+      }
+      
+      &.error {
+        color: var(--color-error);
+      }
+    }
+  }
+  
+  .input-form {
+    display: flex;
+    gap: var(--space-sm);
+    
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
+  }
+  
+  .task-input-field {
+    flex: 1;
+    padding: var(--space-lg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-full);
+    background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      background: linear-gradient(145deg, #f8fafc 0%, #e0e7ff 100%);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), inset 0 2px 4px rgba(59, 130, 246, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    &:hover:not(:focus) {
+      border-color: var(--color-primary-light);
+      background: linear-gradient(145deg, #f9fafb 0%, #f0f4ff 100%);
+      box-shadow: inset 0 2px 4px rgba(59, 130, 246, 0.05);
+    }
+    
+    &.error {
+      border-color: var(--color-error);
+    }
+    
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+  
+  .add-task-btn {
+    padding: var(--space-md) var(--space-xl);
+    background: var(--gradient-primary);
+    color: var(--text-inverse);
+    border: 2px solid transparent;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    
+    // Ripple effect
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      
+      &::before {
+        width: 300px;
+        height: 300px;
+      }
+    }
+    
+    &:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    &.loading {
+      position: relative;
+      color: transparent;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 50%;
+        left: 50%;
+        margin: -8px 0 0 -8px;
+        border: 2px solid transparent;
+        border-top-color: var(--text-inverse);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+    }
+  }
+  
+  .validation-errors {
+    margin-top: var(--space-sm);
+    
+    .error-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-error);
+      font-size: 0.875rem;
+      margin-bottom: var(--space-xs);
+    }
+  }
+}
+
+// 🗃️ ENHANCED TASK LIST STYLES
+.task-list {
+  background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  
+  .task-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-color);
+    
+    h3 {
+      color: var(--text-primary);
+      font-size: 1.25rem;
+    }
+    
+    .task-count {
+      background: var(--color-primary);
+      color: var(--text-inverse);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-full);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+  }
+  
+  .task-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+}
+
+.task-list-empty {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--text-muted);
+  
+  .empty-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+  }
+  
+  .empty-message {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+  }
+  
+  .empty-hint {
+    font-size: 0.875rem;
+  }
+}
+
+// 📝 ENHANCED TASK ITEM STYLES
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+  
+  // Modern glass effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+  
+  &:hover {
+    border-color: var(--color-primary);
+    background: linear-gradient(145deg, #f0f4ff 0%, #e0e7ff 100%);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px) scale(1.002);
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    .task-text {
+      color: var(--color-primary);
+    }
+  }
+  
+  &.completed {
+    opacity: 0.7;
+    
+    .task-text {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+  }
+  
+  &.editing {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+  }
+  
+  .task-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    
+    &:hover {
+      background: var(--bg-hover);
+      transform: scale(1.1);
+    }
+  }
+  
+  .task-content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .task-view {
+    .task-text {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      word-wrap: break-word;
+      line-height: 1.6;
+      margin-bottom: var(--space-xs);
+      transition: color var(--transition-normal);
+    }
+    
+    .task-date {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+  }
+  
+  .task-edit {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+    
+    @media (max-width: 640px) {
+      flex-direction: column;
+    }
+    
+    .edit-input {
+      flex: 1;
+      padding: var(--space-sm);
+      border: 2px solid var(--color-primary);
+      border-radius: var(--radius-sm);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+      }
+    }
+    
+    .edit-actions {
+      display: flex;
+      gap: var(--space-xs);
+    }
+  }
+  
+  .task-actions {
+    display: flex;
+    gap: var(--space-xs);
+    
+    button {
+      background: transparent;
+      border: none;
+      padding: var(--space-xs);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-size: 1rem;
+      
+      &:hover {
+        background: var(--bg-hover);
+        transform: scale(1.1);
+      }
+      
+      &.edit-btn:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+      
+      &.delete-btn:hover {
+        background: rgba(239, 68, 68, 0.1);
+      }
+      
+      &.save-btn:hover {
+        background: rgba(16, 185, 129, 0.1);
+      }
+      
+      &.cancel-btn:hover {
+        background: rgba(239, 68, 68, 0.1);
+      }
+    }
+  }
+}
+
+// 🔍 TASK FILTERS STYLES
+.task-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  
+  h3, h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: 1.125rem;
+  }
+  
+  h4 {
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+  }
+}
+
+.task-stats {
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    
+    .stat-item {
+      text-align: center;
+      padding: var(--space-sm);
+      background: var(--bg-primary);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      
+      .stat-number {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+      
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+
+.search-section {
+  .search-box {
+    position: relative;
+    
+    .search-input {
+      width: 100%;
+      padding: var(--space-sm) var(--space-md);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+      }
+      
+      &::placeholder {
+        color: var(--text-muted);
+      }
+    }
+    
+    .clear-search {
+      position: absolute;
+      right: var(--space-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-xs);
+      border-radius: var(--radius-sm);
+      
+      &:hover {
+        background: var(--bg-hover);
+      }
+    }
+  }
+}
+
+.filter-section {
+  .filter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    
+    .filter-btn {
+      width: 100%;
+      padding: var(--space-md) var(--space-lg);
+      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      text-align: left;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      &:hover {
+        border-color: var(--color-primary);
+        background: linear-gradient(145deg, #e0e7ff 0%, #c7d2fe 100%);
+        color: var(--color-primary);
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        
+        &::before {
+          left: 100%;
+        }
+      }
+      
+      &.active {
+        background: var(--gradient-primary);
+        color: var(--text-inverse);
+        border-color: var(--color-primary);
+        transform: translateX(8px);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+      }
+    }
+  }
+}
+
+.sort-section {
+  .sort-select {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+    }
+  }
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  
+  .action-btn {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    &.toggle-all:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--color-primary);
+    }
+    
+    &.clear-completed:hover {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: var(--color-error);
+    }
+  }
+}
+
+.tips-section {
+  .tips-list {
+    list-style: none;
+    
+    li {
+      padding: var(--space-xs) 0;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      border-bottom: 1px solid var(--border-color);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// � USER PROFILE & SETTINGS STYLES
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-primary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    
+    .user-avatar {
+      font-size: 2rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-full);
+    }
+    
+    .user-details {
+      flex: 1;
+      
+      .user-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: var(--space-xs);
+      }
+      
+      .user-greeting {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+    }
+  }
+}
+
+.productivity-stats {
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--border-color);
+  
+  .stats-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    
+    .stat-mini {
+      text-align: center;
+      
+      .stat-value {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+      
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.quick-settings {
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--border-color);
+  
+  .setting-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    
+    &:hover {
+      color: var(--color-primary);
+    }
+    
+    input[type="checkbox"] {
+      // Safari fallback - Remove accent-color
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border-color);
+      border-radius: 4px;
+      cursor: pointer;
+      
+      &:checked {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-8.5 8.5a.5.5 0 0 1-.708 0l-3-3'/%3e%3c/svg%3e");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}
+
+.achievements {
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--border-color);
+  
+  .achievement-badges {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+    
+    .achievement-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-sm);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      
+      &.unlocked {
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid var(--color-success);
+        color: var(--color-success);
+      }
+      
+      &.locked {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        color: var(--text-muted);
+        opacity: 0.6;
+      }
+      
+      .badge-icon {
+        font-size: 1.5rem;
+      }
+      
+      .badge-name {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// 🎭 ANIMATIONS & KEYFRAMES
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 📱 RESPONSIVE DESIGN
+@media (max-width: 640px) {
+  .task-app {
+    padding: var(--space-sm);
+  }
+  
+  .app-header {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+  
+  .task-item {
+    flex-direction: column;
+    align-items: stretch;
+    
+    .task-actions {
+      justify-content: center;
+    }
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+  
+  .achievement-badges {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .task-filters {
+    order: -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .task-app {
+    padding: var(--space-lg);
+  }
+  
+  .sidebar-area {
+    position: -webkit-sticky; // Safari fallback
+    position: sticky;
+    top: var(--space-lg);
+  }
+}
+
+// 📱 SMALL MOBILE (480px trở xuống)
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.2rem;                // Font size nhỏ nhất
+  }
+  
+  .theme-toggle {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 1rem;
+    
+    .theme-icon {
+      font-size: 1rem;
+    }
+  }
+  
+  .main-area,
+  .sidebar-area {
+    padding: 1rem;                    // Padding tối thiểu
+  }
+}
+
+// 🎨 THEME TRANSITION EFFECTS - Hiệu ứng mượt khi chuyển theme
+.task-app,
+.app-header,
+.main-area,
+.sidebar-area,
+.theme-toggle {
+  transition: 
+    background-color var(--transition-normal),
+    color var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* ✅ TASK MANAGER SCSS COMPLETE */
+.add-task-btn {
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  background-color: var(--primary-color);
+  color: white;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 100px;
+  white-space: nowrap;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--primary-color-dark); // Use CSS variable for hover
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  // 💤 DISABLED STATE
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+    transform: none;
+    box-shadow: none;
+  }
+  
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+// ⏳ LOADING SPINNER
+.loading-spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  font-size: 1.2rem;
+}
+
+/* ✅ TASK MANAGER SCSS COMPLETE */

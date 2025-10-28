@@ -1,0 +1,356 @@
+// 🎨 Product List Styles
+.product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+
+    .product-item {
+        border: 2px solid #e0e0e0;
+        padding: 25px;
+        border-radius: 16px;
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        min-width: 220px;
+        flex: 1;
+        max-width: 320px;
+        position: relative;
+        overflow: hidden;
+
+        // Animated background gradient
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        &:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-color: #2196F3;
+
+            &::before {
+                left: 100%;
+            }
+        }
+
+        &:active {
+            transform: translateY(-4px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        // Available products styling
+        &.available {
+            border-color: #4CAF50;
+            background: linear-gradient(145deg, #f1f8e9 0%, #ffffff 100%);
+            
+            &:hover {
+                border-color: #2E7D32;
+                background: linear-gradient(145deg, #e8f5e8 0%, #f1f8e9 100%);
+                box-shadow: 
+                    0 20px 40px rgba(76, 175, 80, 0.2),
+                    0 0 0 2px rgba(76, 175, 80, 0.1);
+            }
+            
+            h4 {
+                color: #2E7D32;
+                text-shadow: 0 1px 2px rgba(46, 125, 50, 0.1);
+            }
+            
+            .status {
+                color: #ffffff;
+                background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+                
+                &::before {
+                    content: '✓ ';
+                }
+            }
+        }
+
+        // Out of stock products styling
+        &.out_of_stock {
+            border-color: #f44336;
+            background: linear-gradient(145deg, #ffebee 0%, #ffffff 100%);
+            
+            &:hover {
+                border-color: #d32f2f;
+                background: linear-gradient(145deg, #ffcdd2 0%, #ffebee 100%);
+                box-shadow: 
+                    0 20px 40px rgba(244, 67, 54, 0.2),
+                    0 0 0 2px rgba(244, 67, 54, 0.1);
+            }
+            
+            h4 {
+                color: #d32f2f;
+                text-decoration: line-through;
+                text-shadow: 0 1px 2px rgba(211, 47, 47, 0.1);
+            }
+            
+            .status {
+                color: #ffffff;
+                background: linear-gradient(135deg, #f44336 0%, #ef5350 100%);
+                box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+                
+                &::before {
+                    content: '✗ ';
+                }
+            }
+            
+            .price {
+                text-decoration: line-through;
+                opacity: 0.7;
+                color: #757575;
+            }
+        }
+
+        h4 {
+            margin: 0 0 15px 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1976D2;
+            margin: 12px 0;
+            position: relative;
+            z-index: 1;
+            
+            &::before {
+                content: '$';
+                font-size: 1rem;
+                vertical-align: super;
+                margin-right: 2px;
+            }
+        }
+
+        .status {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            border: none;
+            outline: none;
+        }
+
+        p {
+            margin: 8px 0;
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+
+// 🎮 Filter Buttons Container
+.filter-buttons {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .filter-btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+        outline: none;
+        min-width: 140px;
+
+        // Base button style
+        background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+        color: #666;
+        box-shadow: 
+            0 4px 15px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+        // Shimmer effect
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+            &::before {
+                left: 100%;
+            }
+        }
+
+        &:active {
+            transform: translateY(-1px);
+            transition: all 0.1s ease;
+        }
+
+        // Show All button
+        &.show-all {
+            background: linear-gradient(145deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+
+            &:hover {
+                background: linear-gradient(145deg, #1976D2 0%, #1565C0 100%);
+                box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+            }
+
+            &.active {
+                background: linear-gradient(145deg, #1565C0 0%, #0D47A1 100%);
+                box-shadow: 
+                    0 8px 25px rgba(33, 150, 243, 0.5),
+                    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        // Available button
+        &.show-available {
+            background: linear-gradient(145deg, #4CAF50 0%, #388E3C 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+
+            &:hover {
+                background: linear-gradient(145deg, #388E3C 0%, #2E7D32 100%);
+                box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+            }
+
+            &.active {
+                background: linear-gradient(145deg, #2E7D32 0%, #1B5E20 100%);
+                box-shadow: 
+                    0 8px 25px rgba(76, 175, 80, 0.5),
+                    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        // Out of Stock button
+        &.show-out-of-stock {
+            background: linear-gradient(145deg, #f44336 0%, #D32F2F 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+
+            &:hover {
+                background: linear-gradient(145deg, #D32F2F 0%, #C62828 100%);
+                box-shadow: 0 8px 25px rgba(244, 67, 54, 0.4);
+            }
+
+            &.active {
+                background: linear-gradient(145deg, #C62828 0%, #B71C1C 100%);
+                box-shadow: 
+                    0 8px 25px rgba(244, 67, 54, 0.5),
+                    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        // Active state
+        &.active {
+            transform: translateY(-1px);
+            
+            &::after {
+                content: '✓';
+                position: absolute;
+                right: 8px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 0.8rem;
+            }
+        }
+
+        // Focus state
+        &:focus {
+            outline: 3px solid rgba(33, 150, 243, 0.3);
+            outline-offset: 2px;
+        }
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .product-list {
+        flex-direction: column;
+        gap: 15px;
+        
+        .product-item {
+            max-width: 100%;
+            min-width: auto;
+            
+            &:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+    }
+
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        .filter-btn {
+            width: 100%;
+            max-width: 250px;
+        }
+    }
+}
+
+// Loading state animation
+.product-list.loading {
+    .product-item {
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+// Button click effect
+.product-item {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    
+    &:focus {
+        outline: 3px solid rgba(33, 150, 243, 0.3);
+        outline-offset: 2px;
+    }
+}

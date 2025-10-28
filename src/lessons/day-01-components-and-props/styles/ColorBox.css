@@ -1,0 +1,14 @@
+/* Styles cho ColorBox component - Day 1 */
+.color-box {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: inline-block;
+  border: 2px solid #333;
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
+}
+
+.color-box:hover {
+  transform: scale(1.1); /* Phóng to khi hover */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Thêm bóng đổ */
+}
