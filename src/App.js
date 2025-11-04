@@ -10,15 +10,17 @@ import Home from './pages/Home';     // Component Home page (modern structure)
 // Import TaskManager App - the main application
 import TaskManagerApp from './lessons/core-hooks-exercise'; // ← Component TaskManagerApp (core hooks exercise)
 
+import WeatherApp from './lessons/weather-app-exercise/WeatherApp'; // ← Component WeatherApp (weather app exercise)
+
 // 🧩 BƯỚC 2: Định nghĩa App component (Component gốc của ứng dụng)
 function App() {
   // 🔄 BƯỚC 3: Logic điều khiển hiển thị
-  const showNewStructure = false;  // Flag để switch giữa lessons và modern structure
+  // const showNewStructure = false;  // Flag để switch giữa lessons và modern structure
 
-  // 🎯 Điều kiện render: Nếu showNewStructure = true → hiển thị Home page
-  if (showNewStructure) {
-    return <Home />;  // Render Home component và kết thúc function
-  }
+  // // 🎯 Điều kiện render: Nếu showNewStructure = true → hiển thị Home page
+  // if (showNewStructure) {
+  //   return <Home />;  // Render Home component và kết thúc function
+  // }
 
   // 🎨 BƯỚC 4: Render giao diện chính (khi showNewStructure = false)
   return (
@@ -69,7 +71,9 @@ function App() {
       <ProductList />
       */}
 
-      <TaskManagerApp />
+      {/* <TaskManagerApp /> */}
+
+      <WeatherApp />
     </div>
   );
 }
